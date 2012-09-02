@@ -3,8 +3,10 @@ import manager_libs
 from manager_libs import *
 
 def printHelp():
-    print "You need help"
-    quit()
+	print "You need help"
+	print "USAGE: ./Python-Hosting-Manager.py <option> <username>"
+	print "\t-c\tCreate User\n\t-r\tRemove User"
+	quit()
 
 #Check if running as root
 if os.getuid() != 0:
