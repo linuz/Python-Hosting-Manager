@@ -1,4 +1,4 @@
-DB_USER = 'root'
+DB_USER = ''
 DB_PASS = ''
 DB_SUFFIX = '_main'
 PASSWORD_SALT = ''
