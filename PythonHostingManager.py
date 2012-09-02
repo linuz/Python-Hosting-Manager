@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import manager_libs
 from manager_libs import *
 
 def printHelp():
@@ -13,27 +13,28 @@ if os.getuid() != 0:
 
 #Check if proper number of arguments given
 numArgs = len(sys.argv)
-if numArgs < 3:
+if numArgs != 3:
     printHelp()
-
+else:
+	user = sys.argv[2]
 
 #Create user if first argument is -c
 if sys.argv[1] == "-c":
-    for i in range(2,numArgs):
-		user = sys.argv[i]	
-		if not checkUser(user):
-			userCreate(user)
+	if not checkUser(user):
+		if not checkDatabase(user):
+			password = getPassword()
+			userCreate(user, password, "/bin/bash")
 		else:
-			print "User: '" + user + "' already exisits!"
+			print "Database name: '" + user + manager_libs.DB_SUFFIX + "' already exisits!"
+	else:
+		print "User: '" + user + "' already exisits!"
 
-#Remove user if first  argument is -r
+#Remove user if first argument is -r
 elif sys.argv[1] == "-r":
-    for i in range(2,numArgs):
-		user = sys.argv[i]
-		if checkUser(user):
-			userRemove(user)
-		else:
-			print "User: '" + user + "' does not exisit!"
+	if checkUser(user):
+		userRemove(user)
+	else:
+		print "User: '" + user + "' does not exisit!"
 
 #If first argument is neither -c nor -r, print help and quit
 else:
