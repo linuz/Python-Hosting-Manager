@@ -24,7 +24,7 @@ if sys.argv[1] == "-c":
 	if not check:
 		if not checkDatabase(user):
 			password = getPassword()
-			userCreate(user, password, "/bin/bash")
+			userCreate(user, password)
 		else:
 			print "Database name: '" + user + manager_libs.DB_SUFFIX + "' already exists!"
 	elif check == 2:

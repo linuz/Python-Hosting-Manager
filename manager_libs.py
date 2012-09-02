@@ -4,12 +4,8 @@ import os
 import re
 import sys
 import subprocess as sp
-
-#Database credentials. TODO: implement config file!
-DB_USER = ''
-DB_PASS = ''
-DB_SUFFIX = "_main"
-PASSWORD_SALT = ""
+import manager_config
+from manager_config import *
 
 #Check in /etc/passwd if the specified users exisit. Returns 1 if exists, 0 if not.
 def checkUser(user):
@@ -47,14 +43,14 @@ def getPassword():
 	return password1
 
 #Creates user using os.system commands. Also makes directories and files.
-def userCreate(user, password, shell):
+def userCreate(user, password):
     encPass = crypt.crypt(password, PASSWORD_SALT)
-    os.system("useradd --create-home --shell "+shell+" --password "+encPass+" "+user)
+    os.system("useradd --create-home --shell "+USER_SHELL+" --password "+encPass+" "+user)
     os.system("chmod 711 /home/"+user)
     os.system("mkdir /home/"+user+"/public_html")
     os.system("chown -R "+user+":"+user+" /home/"+user+"/public_html")
     os.system("chmod 711 /home/"+user+"/public_html")
-    os.system("cp -rf /root/public_html_template/* /home/"+user+"/public_html/")
+    os.system("cp -rf "+PUBLIC_HTML_TEMPLATE+"* /home/"+user+"/public_html/")
     os.system("mysql --user="+DB_USER+" --password='"+DB_PASS+"' -e \"CREATE DATABASE "+user+DB_SUFFIX+"; GRANT ALL ON "+user+DB_SUFFIX+".* TO '"+user+"' IDENTIFIED BY '"+password+"'; FLUSH PRIVILEGES;\"")
     print "User: '"+user+"' has been created!"
 
