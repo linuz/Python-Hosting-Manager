@@ -1,6 +1,7 @@
 import crypt
 import getpass
 import os
+import re
 import sys
 import subprocess as sp
 
@@ -8,18 +9,21 @@ import subprocess as sp
 DB_USER = ''
 DB_PASS = ''
 DB_SUFFIX = "_main"
-PASSWORD_SALT = "kv"
+PASSWORD_SALT = ""
 
 #Check in /etc/passwd if the specified users exisit. Returns 1 if exists, 0 if not.
 def checkUser(user):
+	user = user.lower()
+	if not re.match("^[A-Za-z0-9_-]*$", user):
+		print "Name is invalid!"	
+		return 1
 	print "Checking if user: '"+user+"' already exisits..."
 	file = open("/etc/passwd","r")
 	for line in file:
 		if user+":" in line:
 			file.close()
-			return 1
+			return 2
 	file.close()
-	print "User does not already exisit. Creating user..."
 	return 0
 
 #Check if new user's database already exisits

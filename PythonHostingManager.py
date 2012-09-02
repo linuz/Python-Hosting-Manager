@@ -17,24 +17,25 @@ if numArgs != 3:
     printHelp()
 else:
 	user = sys.argv[2]
+	check = checkUser(user)
 
 #Create user if first argument is -c
 if sys.argv[1] == "-c":
-	if not checkUser(user):
+	if not check:
 		if not checkDatabase(user):
 			password = getPassword()
 			userCreate(user, password, "/bin/bash")
 		else:
-			print "Database name: '" + user + manager_libs.DB_SUFFIX + "' already exisits!"
-	else:
-		print "User: '" + user + "' already exisits!"
+			print "Database name: '" + user + manager_libs.DB_SUFFIX + "' already exists!"
+	elif check == 2:
+		print "User: '"+user+"' already exists!"
 
 #Remove user if first argument is -r
 elif sys.argv[1] == "-r":
-	if checkUser(user):
+	if check == 2:
 		userRemove(user)
-	else:
-		print "User: '" + user + "' does not exisit!"
+	elif check == 0:
+		print "User: '"+user+"' does not exists!"
 
 #If first argument is neither -c nor -r, print help and quit
 else:
