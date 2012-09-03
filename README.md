@@ -24,7 +24,9 @@ USAGE:
 Elevated privillages is required!
 
 sudo ./Python-Hosting-Manager.py <option> <username>
+
 	-c		Create user
+
 	-r		remove user
 
 TODO:
@@ -34,7 +36,7 @@ TODO:
 * Create a front end web interface for users to log into and manage their account. (Look into Django)
 * Allow users to manage and create new databases from web interface.
 
-Changes:
+CHANGES:
 =========
 
 *Will now add newly created users to a group specified in the config file.
