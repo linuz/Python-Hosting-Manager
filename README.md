@@ -33,22 +33,23 @@ TODO:
 * Create a database backend to store logs and user information.
 * Create a front end web interface for users to log into and manage their account. (Look into Django)
 * Allow users to manage and create new databases from web interface.
+* Convert all os.system mysql commands to use the python mysql libraries
 
 CHANGES:
 =========
 
-*Added username length verification. Will not take usernames greater than 20 characters.
+* Added username length verification. Will not take usernames greater than 20 characters.
 
-*Will now add newly created users to a group specified in the config file.
+* Will now add newly created users to a group specified in the config file.
 
-*Will now properly check if database user already exisits and/or a database with the same name already exisits before creating a user.
+* Will now properly check if database user already exisits and/or a database with the same name already exisits before creating a user.
 
-*Program will terminate upon 3 incorrect password comaperisons.
+* Program will terminate upon 3 incorrect password comaperisons.
 
-*Now hashes MySQL User passwords before being sent to queries.
+* Now hashes MySQL User passwords before being sent to queries.
 
-*All Constant variables now in manager_config.py file.
+* All Constant variables now in manager_config.py file.
 
-*Usernames are now validated before passing into command.
+* Usernames are now validated before passing into command.
 
-*Now creates a database user and database for new account.
+* Now creates a database user and database for new account.
