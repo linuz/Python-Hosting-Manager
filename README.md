@@ -37,6 +37,8 @@ TODO:
 CHANGES:
 =========
 
+*Added username length verification. Will not take usernames greater than 20 characters.
+
 *Will now add newly created users to a group specified in the config file.
 
 *Will now properly check if database user already exisits and/or a database with the same name already exisits before creating a user.

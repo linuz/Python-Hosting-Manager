@@ -20,7 +20,7 @@ def mysqlEncPass(password):
 #Check in /etc/passwd if the specified users exisit. Returns 1 if exists, 0 if not.
 def checkUser(user):
 	user = user.lower()
-	if not re.match("^[A-Za-z0-9_-]*$", user):
+	if not re.match("^[A-Za-z0-9_-]*$", user) or len(user) > 20:
 		print "Name is invalid!"	
 		return 1
 	print "Checking if user: '"+user+"' already exisits..."
