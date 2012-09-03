@@ -4,7 +4,7 @@ from manager_libs import *
 
 def printHelp():
 	print "You need help"
-	print "USAGE: ./Python-Hosting-Manager.py <option> <username>"
+	print "USAGE: sudo ./Python-Hosting-Manager.py <option> <username>"
 	print "\t-c\tCreate User\n\t-r\tRemove User"
 	quit()
 
