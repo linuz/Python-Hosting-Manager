@@ -24,9 +24,7 @@ USAGE:
 Elevated privillages is required!
 
 sudo ./Python-Hosting-Manager.py <option> <username>
-
 	-c		Create user
-
 	-r		remove user
 
 TODO:
