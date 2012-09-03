@@ -30,6 +30,8 @@ sudo ./Python-Hosting-Manager.py <option> <username>
 Changes:
 =========
 
+*Will now properly check if database user already exisits and/or a database with the same name already exisits before creating a user.
+
 *Program will terminate upon 3 incorrect password comaperisons.
 
 *Now hashes MySQL User passwords before being sent to queries.

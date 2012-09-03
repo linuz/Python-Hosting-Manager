@@ -34,12 +34,15 @@ def checkUser(user):
 
 #Check if new user's database already exisits
 def checkDatabase(user):
-	mysql_check = sp.Popen("mysql --user="+DB_USER+" --password="+DB_PASS+" -e 'SHOW DATABASES;'", shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
-	mysql_out, mysql_err = mysql_check.communicate()
-	if user+DB_SUFFIX in mysql_out:
+	mysql_userCheck = sp.Popen("mysql --user="+DB_USER+" --password="+DB_PASS+" -e \"SELECT user FROM mysql.user WHERE user='"+user+"';\"", shell=True, stdout=sp.PIPE)
+	mysql_out, mysql_err = mysql_userCheck.communicate()
+	if mysql_out:
 		return 1
-	else:
-		return 0
+	mysql_dbCheck = sp.Popen("mysql --user="+DB_USER+" --password="+DB_PASS+" -e 'SHOW DATABASES;'", shell=True, stdout=sp.PIPE)
+	mysql_out, mysql_err = mysql_dbCheck.communicate()
+	if user+DB_SUFFIX in mysql_out:
+		return 2
+	return 0
 
 #Grab and encrypt password
 def getPassword():
