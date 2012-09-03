@@ -65,7 +65,7 @@ def getPassword():
 def userCreate(user, password):
 	encPass = crypt.crypt(password, PASSWORD_SALT)
 	mysqlPass = mysqlEncPass(password)
-	os.system("useradd --create-home --shell "+USER_SHELL+" --password "+encPass+" "+user)
+	os.system("useradd --create-home --shell "+USER_SHELL+" --groups " +USER_GROUP+" --password "+encPass+" "+user)
 	os.system("chmod 711 /home/"+user)
 	os.system("mkdir /home/"+user+"/public_html")
 	os.system("chown -R "+user+":"+user+" /home/"+user+"/public_html")
@@ -83,5 +83,3 @@ def userRemove(user):
         print "User: " + user + " has been deleted!"
     else:
         print "Deletion of user: '" + user + "' has been aborted"
-
-
