@@ -27,6 +27,13 @@ sudo ./Python-Hosting-Manager.py <option> <username>
 	-c		Create user
 	-r		remove user
 
+TODO:
+======
+* Create a setup and pre-req check script.
+* Create a database backend to store logs and user information.
+* Create a front end web interface for users to log into and manage their account. (Look into Django)
+* Allow users to manage and create new databases from web interface.
+
 Changes:
 =========
 
