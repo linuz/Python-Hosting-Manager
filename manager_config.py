@@ -1,6 +1,12 @@
 
+#Location where the database is hosted.
+DB_HOST = 'localhost'
+
+#Port for hosted database
+DB_PORT = '3306'
+
 #Database user. Must have privillages to add users and create databases. (Root user)
-DB_USER = ''
+DB_USER = 'root'
 
 #Database password for specified database user.
 DB_PASS = ''
